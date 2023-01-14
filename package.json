@@ -1,0 +1,25 @@
+{
+  "name": "cfb-pickem",
+  "version": "1.0.0",
+  "description": "Project repository to gain experience with full stack web application development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baduquig/cfb-pickem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baduquig/cfb-pickem/issues"
+  },
+  "homepage": "https://github.com/baduquig/cfb-pickem#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3",
+    "nodemon": "^2.0.20"
+  }
+}
