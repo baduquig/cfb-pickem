@@ -27,7 +27,7 @@ export const updatePick = async (req, res) => {
             homeSchoolName, homeSchoolMascot, createdDateTime, lastUpdatedDateTime } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send(`Record not found`);
+        return res.status(404).send('Record not found');
     } else {
         const updatedPick = { _id: id, userName, schoolPicked, scoreDifferential, points, week, day, date, gameTime, 
                                 finalScore, awaySchoolId, awaySchoolName, awaySchoolMascot, homeSchoolId, 
