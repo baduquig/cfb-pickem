@@ -1,4 +1,4 @@
-from db_config import DBConfig
+from endpoints.db_config import DBConfig
 import json
 
 class Picks():
