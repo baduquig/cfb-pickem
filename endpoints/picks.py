@@ -1,15 +1,10 @@
+from db_config import DBConfig
 import json
 import mysql.connector
 
 class Picks():
     def __init__(self):
-        self.db_config = {
-            'user': 'sql9634488',
-            'password': '2usSRQH2hu',
-            'host': 'sql9.freemysqlhosting.net',
-            'database': 'sql9634488',
-            'raise_on_warnings': True
-        }
+        self.db_config = DBConfig.db_config
 
     def db_connect(self, config):
         conn = mysql.connector.connect(**config)
