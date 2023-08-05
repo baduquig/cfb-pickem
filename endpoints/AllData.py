@@ -1,7 +1,7 @@
 from endpoints.db_config import DBConfig
 import json
 
-class Picks():
+class AllData():
     def __init__(self):
         self.db_conn = DBConfig.db_connect()
 
