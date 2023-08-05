@@ -1,3 +1,5 @@
+import mysql.connector
+
 class DBConfig():
     db_config = {
         'user': 'sql9634488',
@@ -6,3 +8,7 @@ class DBConfig():
         'database': 'sql9634488',
         'raise_on_warnings': True
     }
+
+    def db_connect(self):
+        conn = mysql.connector.connect(**self.db_config)
+        return conn

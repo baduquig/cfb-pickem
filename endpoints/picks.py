@@ -1,14 +1,9 @@
 from db_config import DBConfig
 import json
-import mysql.connector
 
 class Picks():
     def __init__(self):
-        self.db_config = DBConfig.db_config
-
-    def db_connect(self, config):
-        conn = mysql.connector.connect(**config)
-        return conn
+        self.db_conn = DBConfig.db_connect()
 
     def create_select_statement(self, user_id, game_id):
         db_name = self.db_config["database"]
@@ -64,13 +59,12 @@ class Picks():
         #user_id = request.args.get('userID')
         #game_id = request.args.get('gameID')
 
-        conn = self.db_connect(self.db_config)
-        cursor = conn.cursor()
+        cursor = self.db_conn.cursor()
         select_stmt = self.create_select_statement(game_id, user_id)
         cursor.execute(select_stmt)
         results = cursor.fetchall()
         cursor.close()
-        conn.close()
+        self.db_conn.close()
         
         response = self.create_result_string(results)
         #response.headers.add('Access-Control-Allow-Origin', '*')
