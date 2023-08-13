@@ -18,7 +18,7 @@ class AllData():
             select_stmt = f'SELECT * FROM {db_name}.CFB_ALL_DATA_VW WHERE GAME_ID = {game_id} AND USER_ID = {user_id};'
         return select_stmt
 
-    def create_result_string(self, results_tuples):
+    def generate_response(self, results_tuples):
         results_dicts = []
         for record in results_tuples:
             record_obj = {
@@ -62,12 +62,12 @@ class AllData():
         #game_id = request.args.get('gameID')
 
         cursor = self.db_conn.cursor()
-        select_stmt = self.create_select_statement(game_id, user_id)
-        cursor.execute(select_stmt)
+        #select_stmt = self.create_select_statement(game_id, user_id)
+        cursor.execute(f'SELECT * FROM CFB_GET_ALL_VW;')
         results = cursor.fetchall()
         cursor.close()
         self.db_conn.close()
         
-        response = self.create_result_string(results)
+        response = self.generate_response(results)
         #response.headers.add('Access-Control-Allow-Origin', '*')
         return response

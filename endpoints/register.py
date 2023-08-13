@@ -6,11 +6,16 @@ class Register():
     def __init__(self):
         self.db_conn = DBConfig.db_connect()
     
-    def register(self, username, pw):
+    def register(self, username, pw, confirm_pw):
         try:
             user_exists = User.username_exists(username, pw)
 
-            if user_exists:
+            if pw != confirm_pw:
+                response_data = {
+                    'message': 'Passwords do not match.'
+                }
+                response = json.dumps(response_data), 400
+            elif user_exists:
                 response_data = {
                     'message': 'User already exists.'
                 }

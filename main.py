@@ -1,4 +1,4 @@
-from endpoints.AllData import AllData
+from endpoints.all_data import AllData
 from endpoints.register import Register
 
 #picks = Picks()
