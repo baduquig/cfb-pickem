@@ -5,19 +5,6 @@ class AllData():
     def __init__(self):
         self.db_conn = DBConfig.db_connect()
 
-    def create_select_statement(self, user_id, game_id):
-        db_name = self.db_config["database"]
-
-        if user_id is None and game_id is None:
-            select_stmt = f'SELECT * FROM {db_name}.CFB_ALL_DATA_VW;'
-        elif user_id is None and game_id is not None:
-            select_stmt = f'SELECT * FROM {db_name}.CFB_ALL_DATA_VW WHERE GAME_ID = {game_id}'
-        elif user_id is not None and game_id is None:
-            select_stmt = f'SELECT * FROM {db_name}.CFB_ALL_DATA_VW WHERE USER_ID = {user_id};'
-        else:
-            select_stmt = f'SELECT * FROM {db_name}.CFB_ALL_DATA_VW WHERE GAME_ID = {game_id} AND USER_ID = {user_id};'
-        return select_stmt
-
     def generate_response(self, results_tuples):
         results_dicts = []
         for record in results_tuples:
@@ -68,6 +55,6 @@ class AllData():
         cursor.close()
         self.db_conn.close()
         
-        response = self.generate_response(results)
+        response = self.generate_response(results), 200
         #response.headers.add('Access-Control-Allow-Origin', '*')
         return response

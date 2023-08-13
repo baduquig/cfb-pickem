@@ -3,9 +3,6 @@ from endpoints.user import User
 import json
 
 class Validate():
-    def __init__(self):
-        self.db_conn = DBConfig.db_connect()
-
     def validate(self, username, pw):
         try:            
             user_record = User.get_user(username, pw)

@@ -15,10 +15,14 @@ class User():
             return 500
 
     def get_user(self, username, pw):
+        cursor = self.db_conn.cursor()
         #cursor.execute('CALL CFB_GET_USER(\'' + userid + '\', \'' + pw + '\');')
         query_str = f'CALL CFB_GET_USER(\'{username}\', \'{pw}\');'
         cursor.execute(query_str)
         
-        cursor = self.db_conn.cursor()
         user_record = cursor.fetchone()
+
+        cursor.close()
+        self.db_conn.close()
+        
         return user_record
