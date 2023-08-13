@@ -1,13 +1,15 @@
 from endpoints.db_config import DBConfig
 import json
 
-class Pick():
+class SubmitPicks():
     def __init__(self):
         self.db_conn = DBConfig.db_connect()
     
-    def submit_picks(self, picks):
+    def submit_picks(self, data):
         try:
             cursor = self.db_conn.cursor()
+
+            picks = json.loads(data)
 
             for pick in picks:
                 user_id = pick['userID']
@@ -23,7 +25,7 @@ class Pick():
                 'message': 'Pick Submitted Successfully!',
                 'data': {str(picks)}
             }
-            response = json.dumps(response_data), 200
+            response = json.dumps(response_data), 201
         except:
             response_data = {
                 'message': 'Internal error occurred. New picks not updated...'

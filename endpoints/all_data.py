@@ -44,10 +44,7 @@ class AllData():
         json_string = json.dumps(results_dicts)
         return json_string
 
-    def get_all_data(self, game_id, user_id):
-        #user_id = request.args.get('userID')
-        #game_id = request.args.get('gameID')
-
+    def get_all_data(self):
         cursor = self.db_conn.cursor()
         #select_stmt = self.create_select_statement(game_id, user_id)
         cursor.execute(f'SELECT * FROM CFB_GET_ALL_VW;')
