@@ -1,30 +1,24 @@
 from endpoints.db_config import DBConfig
-import json
 
 class User():
     def __init__(self):
         self.db_conn = DBConfig.db_connect()
-    
-    def create_new_user(self, username, pw):
+
+    def username_exists(self, username, pw):
         try:
-            cursor = self.db_conn.cursor()
-            cursor.execute('CALL CREATE_NEW_USER(\'' + username + '\', \'' + pw + '\');')
-            
-            cursor.execute('SELECT MAX(USER_ID) FROM CFB_USERS;')
-            user_id = cursor.fetchall()[0][0]
-            
-            cursor.close()
-            self.db_conn.close()
-            
-            response_data = {
-                'message': 'New User Created Successfully!',
-                'data': {'userID': user_id, 'userName': username}
-            }
-            response = json.dumps(response_data), 201
+            user_record = User.get_user(username, pw)
+            if len(user_record) > 0:
+                return True
+            else:
+                return False
         except:
-            response_data = {
-                'message': 'Internal error occurred. New user not created...'
-            }
-            response = json.dumps(response_data), 500
+            return 500
+
+    def get_user(self, username, pw):
+        #cursor.execute('CALL CFB_GET_USER(\'' + userid + '\', \'' + pw + '\');')
+        query_str = f'CALL CFB_GET_USER(\'{username}\', \'{pw}\');'
+        cursor.execute(query_str)
         
-        return response
+        cursor = self.db_conn.cursor()
+        user_record = cursor.fetchone()
+        return user_record
