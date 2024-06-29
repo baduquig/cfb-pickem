@@ -1,4 +1,4 @@
-db_username = 'root'
+db_username = 'pickem_server'
 db_password = 'C-Townpack2013'
 db_host = 'Gabriels-Mac-mini.local'
 db_port = '3306'
