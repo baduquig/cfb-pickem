@@ -27,7 +27,7 @@ def get_user(username: str, pw: str):
             user_id = 0
     except Exception as e:
         user_id = 0
-        logfile.write(f'Error occurred getting user:\n{e}')
+        logfile.write(f'Error occurred getting user:\n{e}\n\n\n')
     logfile.close()
     return user_id
 
@@ -47,7 +47,7 @@ def create_user(username: str, pw: str):
     except Exception as e:
         status = 400
         logfile = open('./error.log', 'a')
-        logfile.write(f'Error occurred creating user:\n{e}')
+        logfile.write(f'Error occurred creating user:\n{e}\n\n\n')
         logfile.close()
     return status
 
@@ -119,7 +119,7 @@ def get_all_picks():
     except Exception as e:
         formatted_response = [{'status': 400}]
         logfile = open('./error.log', 'a')
-        logfile.write(f'Error occurred creating user:\n{e}')
+        logfile.write(f'Error retrieving all picks:\n{e}\n\n\n')
         logfile.close()
     return formatted_response
 
@@ -139,6 +139,6 @@ def submit_pick(user_id: int, game_id: int, selected_team: str):
     except Exception as e:
         status = 400
         logfile = open('./error.log', 'a')
-        logfile.write(f'Error occurred submitting pick:\n{e}')
+        logfile.write(f'Error occurred submitting pick:\n{e}\n\n\n')
         logfile.close()
     return status
